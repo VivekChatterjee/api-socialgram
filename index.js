@@ -11,8 +11,10 @@ const postRoute = require("./routes/posts");
 const router = express.Router();
 const path = require("path");
 const PORT = process.env.PORT || 8800;
-
+const BASE_URL = process.env.BASE_URL
 dotenv.config();
+
+
 
 mongoose.connect(
   `${process.env.MONGO_URL}`,
@@ -50,6 +52,13 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 
+
+
+// app.use(`${BASE_URL}/api/auth`, authRoute);
+// app.use(`${BASE_URL}/api/users`, userRoute);
+// app.use(`${BASE_URL}/api/posts`, postRoute);
+
+
 app.get("/", (req, res) => {
   res.send("Welcome to Homepage");
 })
@@ -61,5 +70,3 @@ app.listen(PORT, () => {
   console.log("Backend server is running!");
 });
 
-
-// https://rest-api-socialgram.onrender.com

@@ -2,8 +2,10 @@ const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
+const BASE_URL = process.env.NODE_ENV == 'production' ? 'https://rest-api-socialgram.onrender.com' : 'http://localhost:8800';
+
 //REGISTER
-router.post("/register", async (req, res) => {
+router.post(`${BASE_URL}/register`, async (req, res) => {
   try {
     //generate new password
     const salt = await bcrypt.genSalt(10);
@@ -25,7 +27,7 @@ router.post("/register", async (req, res) => {
 });
 
 //LOGIN
-router.post("/login", async (req, res) => {
+router.post(`${BASE_URL}/login`, async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     !user && res.status(404).json("user not found");

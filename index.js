@@ -11,7 +11,7 @@ const postRoute = require("./routes/posts");
 const router = express.Router();
 const path = require("path");
 const PORT = process.env.PORT || 8800;
-const BASE_URL = process.env.BASE_URL
+const BASE_URL = process.env.BASE_URL || "";
 dotenv.config();
 
 
@@ -48,15 +48,12 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
   }
 });
 
-app.use("/api/auth", authRoute);
-app.use("/api/users", userRoute);
-app.use("/api/posts", postRoute);
-
-
-
-// app.use(`${BASE_URL}/api/auth`, authRoute);
-// app.use(`${BASE_URL}/api/users`, userRoute);
-// app.use(`${BASE_URL}/api/posts`, postRoute);
+// app.use("/api/auth", authRoute);
+// app.use("/api/users", userRoute);
+// app.use("/api/posts", postRoute);
+app.use(`${BASE_URL}/api/auth`, authRoute);
+app.use(`${BASE_URL}/api/users`, userRoute);
+app.use(`${BASE_URL}/api/posts`, postRoute);
 
 
 app.get("/", (req, res) => {

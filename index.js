@@ -8,8 +8,8 @@ const multer = require("multer");
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
-const router = express.Router();
 const path = require("path");
+const cors = require("cors");
 const PORT = process.env.PORT || 8800;
 const BASE_URL = process.env.BASE_URL || "";
 dotenv.config();
@@ -24,27 +24,9 @@ mongoose.connect(
   }
 );
 
-// use cors headers
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  if (req.method === "OPTIONS") {
-    res.header(
-      "Access-Control-Allow-Methods",
-      "GET, POST, PUT, PATCH, DELETE"
-    );
-    return res.status(200).json({});
-  }
-  next();
-});
-
-
-
-
+//cors
+app.use(cors());
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 //middleware

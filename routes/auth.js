@@ -2,8 +2,7 @@ const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
-const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://rest-api-socialgram.onrender.com' : ``;
-console.log("here it is", BASE_URL);
+const BASE_URL = process.env.NODE_ENV === 'production' ? process.env.BASE_URL : ``;
 //REGISTER
 router.post(`${BASE_URL}/register`, async (req, res) => {
   try {

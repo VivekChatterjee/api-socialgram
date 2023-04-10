@@ -60,8 +60,10 @@ app.use(`${BASE_URL}/api/posts`, postRoute);
 
 
 app.get("/", (req, res) => {
+
   res.send("Welcome to Homepage");
 })
+
 app.get("/users", (req, res) => {
   res.send("Welcome to Future");
 })

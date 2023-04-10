@@ -11,8 +11,8 @@ const postRoute = require("./routes/posts");
 const path = require("path");
 const cors = require("cors");
 const PORT = process.env.PORT || 8800;
-// const BASE_URL = process.env.NODE_ENV === 'production' ? process.env.BASE_URL : ``;
-const BASE_URL = process.env.NODE_ENV === 'dev' ? process.env.BASE_URL : ``;
+const BASE_URL = process.env.NODE_ENV === 'production' ? process.env.BASE_URL : ``;
+// const BASE_URL = process.env.NODE_ENV === 'dev' ? process.env.BASE_URL : ``;
 dotenv.config();
 
 
@@ -61,7 +61,6 @@ app.use(`${BASE_URL}/api/posts`, postRoute);
 
 
 app.get("/", (req, res) => {
-
   res.send("Welcome to Homepage");
 })
 
